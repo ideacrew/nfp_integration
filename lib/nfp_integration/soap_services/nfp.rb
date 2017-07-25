@@ -121,7 +121,7 @@ module NfpIntegration
         def token
 
           return @token if defined? @token
-
+byebug
           return nil if NFP_PASS == nil || NFP_USER_ID == nil
 
           uri, request = build_request(NfpAuthenticateUser.new, {:user => NFP_USER_ID, :password => NFP_PASS})

@@ -6,6 +6,12 @@ module NfpIntegration
 
         puts "Init Variables for NFP SOAP Services"
 
+        NfpIntegration.configure do |config|
+          config.url = "http://helloworl.d.com"
+          config.user_id = "tony"
+          config.password = "yolo"
+        end
+
       end
 
 
