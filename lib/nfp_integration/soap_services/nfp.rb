@@ -9,6 +9,7 @@ require 'nfp_integration/soap_services/nfp_payment_history'
 require 'nfp_integration/soap_services/nfp_pdf_statement'
 require 'nfp_integration/soap_services/nfp_statement_summary'
 
+
 module NfpIntegration
   module SoapServices
     class Nfp
@@ -93,7 +94,7 @@ module NfpIntegration
 
         def build_request(soap_object, parms = {})
 
-          uri = URI.parse(NFP_URL)
+          uri = URI.parse(::NfpIntegration.configuration.url)
           request = Net::HTTP::Post.new(uri)
           request.content_type = "text/xml;charset=UTF-8"
           request["Soapaction"] = soap_object.soap_action
@@ -121,8 +122,8 @@ module NfpIntegration
         def token
 
           return @token if defined? @token
-byebug
-          return nil if NFP_PASS == nil || NFP_USER_ID == nil
+
+          return nil if ::NfpIntegration.configuration.password == nil || ::NfpIntegration.configuration.user_id == nil
 
           uri, request = build_request(NfpAuthenticateUser.new, {:user => NFP_USER_ID, :password => NFP_PASS})
 
