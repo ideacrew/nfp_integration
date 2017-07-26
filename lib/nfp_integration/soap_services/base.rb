@@ -14,7 +14,9 @@ module NfpIntegration
         adjustments = get_element_text(response.xpath("//Adjustments"))
         payments = get_element_text(response.xpath("//Payments"))
         total_due = get_element_text(response.xpath("//TotalDue"))
-        return past_due, previous_balance, new_charges, adjustments, payments, total_due
+        result = {past_due: past_due, previous_balance: previous_balance, new_charges: new_charges,
+          adjustments: adjustments, payments: payments, total_due: total_due}
+        result
       end
 
       def get_most_recent_payment_date(response)
