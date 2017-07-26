@@ -16,7 +16,6 @@ module NfpIntegration
 
       include NfpIntegration::SoapServices::Base
 
-
       def initialize(customer_id)
         @customer_id = customer_id
         token
@@ -85,9 +84,6 @@ module NfpIntegration
           http.request(request)
         end
 
-        puts response.code
-        puts response.body
-
       end
 
       private
@@ -99,7 +95,6 @@ module NfpIntegration
           request.content_type = "text/xml;charset=UTF-8"
           request["Soapaction"] = soap_object.soap_action
           request.body = soap_object.body % parms
-
 
           return uri, request
 
@@ -125,14 +120,11 @@ module NfpIntegration
 
           return nil if ::NfpIntegration.configuration.password == nil || ::NfpIntegration.configuration.user_id == nil
 
-          uri, request = build_request(NfpAuthenticateUser.new, {:user => NFP_USER_ID, :password => NFP_PASS})
+          uri, request = build_request(NfpAuthenticateUser.new, {:user => ::NfpIntegration.configuration.user_id, :password => ::NfpIntegration.configuration.password})
 
           response = Net::HTTP.start(uri.hostname, uri.port, request_options(uri)) do |http|
             http.request(request)
           end
-
-          puts response.code
-          puts response.body
 
           doc = Nokogiri::XML(response.body)
           doc.remove_namespaces!

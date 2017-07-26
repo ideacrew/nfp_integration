@@ -10,15 +10,11 @@ module NfpIntegration
 
       initializer "railtie.nfp_soap_security" do |app|
 
-        puts "Init Variables for NFP SOAP Services"
-
         NfpIntegration.configure do |config|
           config.url = app.config.nfp_integration.url
           config.user_id = app.config.nfp_integration.user_id
           config.password = app.config.nfp_integration.password
         end
-
-        puts NfpIntegration.configuration
 
       end
 
