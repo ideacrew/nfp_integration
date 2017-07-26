@@ -37,3 +37,11 @@ Once configuration is set, you can invoke the WebService call to NFP by passing 
 ```
 nfp = NfpIntegration::SoapServices::Nfp.new("999999")
 ```
+
+### Request
+
+```
+nfp.statement_summary
+nfp.payment_history
+nfp.enrollment_data
+```
