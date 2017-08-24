@@ -14,8 +14,7 @@ module NfpIntegration
         adjustments = get_element_text(response.xpath("//Adjustments"))
         payments = get_element_text(response.xpath("//Payments"))
         total_due = get_element_text(response.xpath("//TotalDue"))
-        result = {past_due: past_due, previous_balance: previous_balance, new_charges: new_charges,
-          adjustments: adjustments, payments: payments, total_due: total_due}
+        result = {past_due: past_due, previous_balance: previous_balance, new_charges: new_charges, adjustments: adjustments, payments: payments, total_due: total_due}
         result
       end
 
@@ -25,6 +24,22 @@ module NfpIntegration
         unless (date.blank?)
           formatted_date = DateTime.parse(date).to_date.to_s
         end
+      end
+
+      def parse_current_statement
+        return nil if @token.blank?
+
+        response = current_statement_summary
+
+        return nil if response.blank?
+
+        past_due = get_element_text(response.xpath("//PastDue"))
+        previous_balance = get_element_text(response.xpath("//PreviousBalance"))
+        new_charges = get_element_text(response.xpath("//NewCharges"))
+        adjustments = get_element_text(response.xpath("//Adjustments"))
+        payments = get_element_text(response.xpath("//Payments"))
+        total_due = get_element_text(response.xpath("//TotalDue"))
+        result = {past_due: past_due, previous_balance: previous_balance, new_charges: new_charges, adjustments: adjustments, payments: payments, total_due: total_due}
       end
 
     end

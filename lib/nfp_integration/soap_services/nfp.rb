@@ -8,6 +8,7 @@ require 'nfp_integration/soap_services/nfp_enrollment_data'
 require 'nfp_integration/soap_services/nfp_payment_history'
 require 'nfp_integration/soap_services/nfp_pdf_statement'
 require 'nfp_integration/soap_services/nfp_statement_summary'
+require 'nfp_integration/soap_services/nfp_current_statement_summary'
 
 
 module NfpIntegration
@@ -50,6 +51,17 @@ module NfpIntegration
         return nil if @token.blank?
 
         uri, request = build_request(NfpStatementSummary.new, {:token => token, :customer_id => @customer_id})
+        response = Net::HTTP.start(uri.hostname, uri.port, request_options(uri)) do |http|
+          http.request(request)
+        end
+
+        return parse_response(response)
+      end
+
+      def current_statement_summary
+        return nil if @token.blank?
+
+        uri, request = build_request(NfpCurrentStatementSummary.new, {:token => token, :customer_id => @customer_id})
         response = Net::HTTP.start(uri.hostname, uri.port, request_options(uri)) do |http|
           http.request(request)
         end
