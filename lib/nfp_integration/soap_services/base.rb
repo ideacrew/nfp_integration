@@ -41,13 +41,13 @@ module NfpIntegration
         total_due = get_element_text(response.xpath("//TotalDue"))
 
         adjustment_items = []
-        response.xpath("//CurrentStatementResponse/CurrentAdjustments/Item/Item").each do |x|
-          adjustment_items << {:amount => get_element_text(x.xpath(".//Amount")),
-                               :name => get_element_text(x.xpath(".//Name")),
-                               :type => get_element_text(x.xpath(".//Type")),
-                               :description => get_element_text(x.xpath(".//Description")),
-                               :status => get_element_text(x.xpath("./Status")),
-                               :posting_date => get_element_text(x.xpath(".//PostingDate")),
+        response.xpath("//CurrentStatementResponse/CurrentAdjustments/Item/Item").each do |i|
+          adjustment_items << {:amount => get_element_text(i.xpath(".//Amount")),
+                               :name => get_element_text(i.xpath(".//Name")),
+                               :type => get_element_text(i.xpath(".//Type")),
+                               :description => get_element_text(i.xpath(".//Description")),
+                               :status => get_element_text(i.xpath(".//Status")),
+                               :posting_date => get_element_text(i.xpath(".//PostingDate")),
                                 }
         end
 
