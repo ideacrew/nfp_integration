@@ -69,6 +69,18 @@ module NfpIntegration
         return parse_response(response)
       end
 
+      def payment_history
+        return nil if @token.blank?
+
+        uri, request = build_request(NfpPaymentHistory.new, {:token => token, :customer_id => @customer_id})
+        response = Net::HTTP.start(uri.hostname, uri.port, request_options(uri)) do |http|
+          http.request(request)
+        end
+
+        return parse_response(response)
+
+      end
+
       # Get Enrollment Data from NFP
       def  enrollment_data
         return nil if @token.blank?

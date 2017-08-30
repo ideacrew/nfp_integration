@@ -50,7 +50,7 @@ module NfpIntegration
                                :status => get_element_text(i.xpath(".//Status")),
                                :posting_date => get_element_text(i.xpath(".//PostingDate")),
                                :coverage_month => get_element_text(i.xpath(".//CoverageMonth"))
-                                }
+                              }
         end
 
         result = {past_due: past_due, previous_balance: previous_balance,
@@ -58,6 +58,26 @@ module NfpIntegration
           total_due: total_due,
           adjustment_items: adjustment_items
         }
+      end
+
+      def parse_payment_history
+        return nil if @token.blank?
+
+        response = payment_history
+
+        return nil if response.blank?
+
+        payments = []
+
+        response.xpath("//PaymentHistoryRes/Payments/Payment").each do |i|
+          payments << {:amount => get_element_text(i.xpath(".//Amount")),
+                       :reference_id => get_element_text(i.xpath(".//RefNo")),
+                       :paid_on => get_element_text(i.xpath(".//DateReceived")),
+                       :method_kind => get_element_text(i.xpath(".//PaymentMethod")),
+                      }
+
+        end
+
       end
 
     end
