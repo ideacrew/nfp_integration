@@ -33,6 +33,11 @@ module NfpIntegration
 
         return nil if response.blank?
 
+        # Need this to return both requests' responses in a single payload
+        payment_history = parse_payment_history
+
+        return nil if payment_history.blank?
+
         past_due = get_element_text(response.xpath("//PastDue"))
         previous_balance = get_element_text(response.xpath("//PreviousBalance"))
         new_charges = get_element_text(response.xpath("//NewCharges"))
@@ -53,10 +58,13 @@ module NfpIntegration
                               }
         end
 
+        # make the second request to retrieve and
+
         result = {past_due: past_due, previous_balance: previous_balance,
           new_charges: new_charges, adjustments: adjustments, payments: payments,
           total_due: total_due,
-          adjustment_items: adjustment_items
+          adjustment_items: adjustment_items,
+          payment_history: payment_history
         }
       end
 
