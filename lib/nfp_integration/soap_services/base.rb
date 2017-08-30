@@ -77,7 +77,7 @@ module NfpIntegration
                       }
 
         end
-
+        payments
       end
 
     end
