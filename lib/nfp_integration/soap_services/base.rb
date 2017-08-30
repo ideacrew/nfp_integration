@@ -73,7 +73,7 @@ module NfpIntegration
           payments << {:amount => get_element_text(i.xpath(".//Amount")),
                        :reference_id => get_element_text(i.xpath(".//RefNo")),
                        :paid_on => get_element_text(i.xpath(".//DateReceived")),
-                       :method_kind => get_element_text(i.xpath(".//PaymentMethod")),
+                       :method_kind => get_element_text(i.xpath(".//PaymentMethod"))
                       }
 
         end
