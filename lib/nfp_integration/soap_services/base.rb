@@ -52,7 +52,8 @@ module NfpIntegration
                                :description => get_element_text(i.xpath(".//Description")),
                                :status => get_element_text(i.xpath(".//Status")),
                                :posting_date => get_element_text(i.xpath(".//PostingDate")),
-                               :coverage_month => get_element_text(i.xpath(".//CoverageMonth"))
+                               :coverage_month => get_element_text(i.xpath(".//CoverageMonth")),
+                               :payment_method => get_element_text(i.xpath(".//PaymentMethod"))
                               }
         end
 
