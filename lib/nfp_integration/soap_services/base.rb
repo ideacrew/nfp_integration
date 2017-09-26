@@ -42,6 +42,7 @@ module NfpIntegration
         adjustments = get_element_text(response.xpath("//Adjustments"))
         payments = get_element_text(response.xpath("//Payments"))
         total_due = get_element_text(response.xpath("//TotalDue"))
+        statement_date = get_element_text(response.xpath("//StatementDate"))
 
 
         adjustment_items = []
@@ -60,6 +61,7 @@ module NfpIntegration
         result = {past_due: past_due, previous_balance: previous_balance,
           new_charges: new_charges, adjustments: adjustments, payments: payments,
           total_due: total_due,
+          statement_date: statement_date,
           adjustment_items: adjustment_items,
           payment_history: payment_history
         }

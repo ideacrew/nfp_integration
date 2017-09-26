@@ -5,8 +5,8 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name        = 'nfp_integration'
-  spec.version     = '0.0.9'
-  spec.date        = '2017-07-22'
+  spec.version     = '0.0.10'
+  spec.date        = '2017-09-26'
   spec.summary     = "SOAP Request Gem for NFP"
   spec.description = "Manage NFP SOAP Requests"
   spec.authors     = ["Antonio Schaffert"]
