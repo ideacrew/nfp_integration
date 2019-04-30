@@ -2,7 +2,7 @@ module NfpIntegration
   module SoapServices
     class NfpPaymentHistory
 
-      SOAP_ACTION = "http://www.nfp.com/schemas/hbcore/IPremiumBillingIntegrationServices/GetCustomersPaymentHistory"
+      SOAP_ACTION = "http://www.nfp.com/schemas/hbcore/IPremiumBillingIntegrationServices/GetCustomerPaymentHistory"
 
       SOAP_BODY = <<-XMLCODE
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:hbc="http://www.nfp.com/schemas/hbcore">
@@ -12,6 +12,7 @@ module NfpIntegration
  <soapenv:Body>
     <hbc:PaymentHistoryReq>
        <hbc:CustomerCode>%{customer_id}</hbc:CustomerCode>
+       <hbc:PaymentCode>All</hbc:PaymentCode>
     </hbc:PaymentHistoryReq>
  </soapenv:Body>
 </soapenv:Envelope>
