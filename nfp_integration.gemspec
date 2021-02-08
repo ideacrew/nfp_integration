@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.description = "Manage NFP SOAP Requests"
   spec.authors     = ["Antonio Schaffert"]
   spec.email       = 'antonio.schaffert@gmail.com'
-  spec.homepage    = "https://github.com/dchbx"
+  spec.homepage    = "https://github.com/ideacrew"
   spec.bindir        = "exe"
 
   spec.files         = `git ls-files -z`.split("\x0")
